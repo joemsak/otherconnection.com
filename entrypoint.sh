@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
-rm -f /app/tmp/pids/server.pid
+FILE=/app/tmp/pids/server.pid
+if test -f "$FILE"; then
+  rm -f $FILE
+fi
 
 exec "$@"

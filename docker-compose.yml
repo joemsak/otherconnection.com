@@ -1,10 +1,16 @@
 version: "3.9"
 
 services:
+  x-backend: &backend
+    build:
+      context: .
+    environment: &env
+      PGPASSWORD: password
+
   db:
+    <<: *backend
     image: postgres
     volumes:
-      - ${PWD}:/${PWD}:cached
       - ./log:/root/log:cached
       - ./.psqlrc:/root/.psqlrc:ro
       - postgres:/var/lib/postgresql/data
@@ -12,19 +18,21 @@ services:
     ports:
       - 5432
     environment:
+      <<: *env
       POSTGRES_PASSWORD: password
       PSQL_HISTFILE: /root/log/.psql_history
       POSTGRES_HOST_AUTH_METHOD: "trust"
 
   web:
+    <<: *backend
     environment:
-      - SSH_AUTH_SOCK=/ssh/auth/sock
-      - EDITOR=vim
+      <<: *env
+      SSH_AUTH_SOCK: /ssh/auth/sock
+      EDITOR: vim
     build: .
     stdin_open: true
     tty: true
     volumes:
-      - ${PWD}:/${PWD}:cached
       - .:/app
       - bundle:/usr/local/bundle
       - node_modules:/app/node_modules
