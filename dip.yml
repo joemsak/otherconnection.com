@@ -6,7 +6,7 @@ environment:
 compose:
   files:
     - docker-compose.yml
-  project_name: otherconnection-0.0.b
+  project_name: otherconnection-0.0.c
 
 interaction:
   bash:
