@@ -12,3 +12,6 @@ Rails.start()
 ActiveStorage.start()
 
 import "controllers"
+
+// Tailwind CSS
+import "stylesheets/application"
