@@ -3,6 +3,11 @@
     "test": {
       "addons":[
         "heroku-postgresql"
+      ],
+
+      "buildpacks": [
+        { "url": "heroku/google-chrome" },
+        { "url": "heroku/nodejs" }
       ]
     }
   }
