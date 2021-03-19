@@ -1,0 +1,19 @@
+<%= turbo_frame_tag(dom_id(@registration)) do %>
+  <%= form_with model: @registration do |f| %>
+    <fieldset>
+      <legend>Create a new account</legend>
+
+      <div>
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div>
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email %>
+      </div>
+    </fieldset>
+
+    <%= f.submit "Sign up" %>
+  <% end %>
+<% end %>
