@@ -6,7 +6,7 @@ environment:
 compose:
   files:
     - docker-compose.yml
-  project_name: otherconnection-0.0.a
+  project_name: otherconnection-0.0.b
 
 interaction:
   bash:
@@ -20,6 +20,16 @@ interaction:
     description: Run Bundler commands
     service: web
     command: bundle
+
+  yarn:
+    description: Run Yarn commands
+    service: web
+    command: yarn
+
+  npx:
+    description: Run npx commands
+    service: web
+    command: npx
 
   rspec:
     description: Run Rspec commands
