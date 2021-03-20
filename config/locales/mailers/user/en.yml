@@ -1,0 +1,5 @@
+en:
+  user:
+    registrations_mailer:
+      signup:
+        subject: Thank you for signing up! Login with this email.

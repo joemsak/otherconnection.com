@@ -9,6 +9,14 @@ class User::RegistrationsController < ApplicationController
 
   private
   def load_new_registation
-    @registration = User::Registration.new
+    if params[:user_registration]
+      @registration = User::Registration.new(user_registration_params)
+    else
+      @registration = User::Registration.new
+    end
+  end
+
+  def user_registration_params
+    params.require(:user_registration).permit(:name, :email)
   end
 end

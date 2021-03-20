@@ -1,0 +1,9 @@
+<h1><%= t("greetings.welcome", name: current_user.name) %></h1>
+
+<dl>
+  <dt><%= t("activerecord.models.user.registration.attribute.name") %></dt>
+  <dd><%= current_user.name %></dd>
+
+  <dt><%= t("activerecord.models.user.registration.attribute.email") %></dt>
+  <dd><%= current_user.email %></dd>
+</dl>

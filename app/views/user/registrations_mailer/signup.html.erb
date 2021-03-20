@@ -1,5 +1,4 @@
-<h1>User::Registrations#signup</h1>
-
 <p>
-  <%= @greeting %>, find me in app/views/user/registrations_mailer/signup.html.erb
+  <%= link_to t("actions.login_now"),
+    signin_url(token: @registration.session_token) %>
 </p>

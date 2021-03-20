@@ -6,9 +6,12 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :registrations
+    resources :sessions, only: %i[new create]
+    resource :dashboard, only: :show
   end
 
+  get 'user/sessions/new', as: :signin
   get 'user/registrations/new', as: :signup
 
-  root to: 'pages/home#show'
+  root to: 'user/dashboards#show'
 end

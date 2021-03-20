@@ -24,4 +24,28 @@ RSpec.describe User::Registration do
       }.from("jack@thehill.com").to("jill@thehill.com")
     end
   end
+
+  describe "#session_token" do
+    it "has_secure_token :session_token, length: 36" do
+      expect(registration.session_token).not_to be_nil
+      expect(registration.session_token.length).to be 36
+    end
+  end
+
+  describe "#auth_token" do
+    it "has_secure_token :auth_token, length: 36" do
+      expect(registration.auth_token).not_to be_nil
+      expect(registration.auth_token.length).to be 36
+    end
+  end
+
+  describe ".auth_token" do
+    it "finds the auth token from secure search options" do
+      expect(described_class.auth_token(name: registration.name)).to be_nil
+      expect(described_class.auth_token(email: registration.email)).to be_nil
+      expect(described_class.auth_token(session_token: registration.session_token)).to eq(
+        registration.auth_token
+      )
+    end
+  end
 end
