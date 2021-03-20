@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "User::Dashboards", type: :request do
-  describe "GET /show" do
+  describe "GET /" do
     let(:registration) { create(:user_registration) }
 
     before do

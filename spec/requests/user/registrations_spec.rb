@@ -8,7 +8,7 @@ RSpec.describe "Users::Registrations" do
     end
   end
 
-  describe "POST /create" do
+  describe "POST /" do
     let(:valid_params) do
       { user_registration: attributes_for(:user_registration) }
     end
