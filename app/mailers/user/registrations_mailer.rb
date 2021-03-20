@@ -8,6 +8,6 @@ class User::RegistrationsMailer < ApplicationMailer
   def signup(registration)
     @greeting = "Hi"
 
-    mail to: "to@example.org"
+    mail to: "joe@joesak.com"
   end
 end
