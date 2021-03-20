@@ -31,6 +31,8 @@ module App
 
       g.stylesheets false
       g.helpers false
+
+      g.orm :active_record, primary_key_type: :uuid
     end
   end
 end
