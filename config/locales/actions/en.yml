@@ -1,5 +1,9 @@
 en:
   actions:
-    login: "Log in"
-    login_now: "Log in now"
-    signup: "Sign up"
+    prefixes:
+      you_can: You can
+
+    close_this: close this %{thing}
+    login: Log in
+    login_now: Log in now
+    signup: Sign up

@@ -3,6 +3,8 @@ en:
     registrations:
       new:
         form_title: Sign up for a new account
+      show:
+        check_email: Check your email for your login link.
     sessions:
       new:
         form_title: Log in to your account
