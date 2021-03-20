@@ -1,0 +1,8 @@
+en:
+  user:
+    registrations:
+      new:
+        form_title: Sign up for a new account
+    sessions:
+      new:
+        form_title: Log in to your account

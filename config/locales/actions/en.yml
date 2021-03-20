@@ -1,3 +1,5 @@
 en:
   actions:
-    login_now: "Login now"
+    login: "Log in"
+    login_now: "Log in now"
+    signup: "Sign up"

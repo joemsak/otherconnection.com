@@ -9,6 +9,6 @@ RSpec.describe "Register a new user", :js do
 
     click_on "Sign up"
 
-    expect(page).to have_content("Check your email for your login link")
+    expect(page).to have_content(succcessful_signup_message)
   end
 end

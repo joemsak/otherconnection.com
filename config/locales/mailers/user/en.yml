@@ -3,3 +3,7 @@ en:
     registrations_mailer:
       signup:
         subject: Thank you for signing up! Login with this email.
+
+    session_mailer:
+      signin:
+        subject: Here is your login link

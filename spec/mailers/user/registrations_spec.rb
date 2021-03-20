@@ -13,7 +13,7 @@ RSpec.describe User::RegistrationsMailer, type: :mailer do
 
     it "renders the magic login link" do
       expect(mail.body.encoded).to have_link(
-        "Login now",
+        "Log in now",
         href: signin_url(token: registration.session_token)
       )
     end

@@ -6,6 +6,13 @@ class User::SessionsController < ApplicationController
     end
   end
 
+  def create
+    @registration = User::Registration.find_by(email: params[:email])
+    @registration.regenerate_session_token
+    User::SessionMailer.signin(@registration).deliver_later
+    redirect_to @registration
+  end
+
   def destroy
     session[:auth_token] = nil
     @current_user = nil
