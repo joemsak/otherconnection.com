@@ -1,4 +1,6 @@
 class User::SessionsController < ApplicationController
+  layout "focused"
+
   def new
     if valid_auth_token
       session[:auth_token] = valid_auth_token

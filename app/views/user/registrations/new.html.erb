@@ -1,27 +1,22 @@
-<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <%= form_with model: @registration do |f| %>
-        <fieldset>
-          <legend>Create a new account</legend>
+<%= form_with model: @registration do |f| %>
+  <fieldset>
+    <legend><%= t(".form_title") %></legend>
 
-          <div class="py-4">
-            <%= f.label :name, "Name", class: 'block' %>
+    <div class="py-4">
+      <%= f.label :name, class: 'block' %>
 
-            <%= f.text_field :name,
-              class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-          </div>
-
-          <div class="py-4">
-            <%= f.label :email, "Email", class: 'block' %>
-
-            <%= f.email_field :email,
-              class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-          </div>
-        </fieldset>
-
-        <%= f.submit "Sign up", class: 'btn btn-blue' %>
-      <% end %>
+      <%= f.text_field :name,
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
     </div>
-  </div>
-</div>
+
+    <div class="py-4">
+      <%= f.label :email, class: 'block' %>
+
+      <%= f.email_field :email,
+        class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
+  </fieldset>
+
+  <%= f.submit t("actions.signup"), class: 'btn btn-blue' %> or
+  <%= link_to t("actions.login"), signin_path %>
+<% end %>

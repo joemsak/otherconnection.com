@@ -1,4 +1,6 @@
 class User::RegistrationsController < ApplicationController
+  layout "focused"
+
   before_action :load_new_registation
 
   def create
