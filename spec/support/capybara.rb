@@ -1,25 +1,6 @@
 require 'capybara/rails'
 require 'webdrivers'
 
-chrome_bin = ENV['GOOGLE_CHROME_SHIM'] if ENV['GOOGLE_CHROME_SHIM'].present?
-
-chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-  chromeOptions: {
-    args: %w[headless disable-gpu window-size=1400x1400],
-    binary: chrome_bin
-  }
-)
-
-Capybara.register_driver :heroku_chrome do |app|
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    desired_capabilities: chrome_capabilities
-  )
-end
-
-Capybara.server = :puma, { Silent: true }
-
 Capybara.register_driver :chrome_headless do |app|
   options = ::Selenium::WebDriver::Chrome::Options.new
 
@@ -31,7 +12,24 @@ Capybara.register_driver :chrome_headless do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Capybara.javascript_driver = :chrome_headless
+chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+
+chrome_opts = chrome_bin ? { "chromeOptions" => { "binary" => chrome_bin } } : {}
+
+Capybara.register_driver :heroku_chrome do |app|
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_opts)
+  )
+end
+
+if ENV["HEROKU_CI"]
+  Capybara.javascript_driver = :chrome
+else
+  Capybara.server = :puma, { Silent: true }
+  Capybara.javascript_driver = :chrome_headless
+end
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
