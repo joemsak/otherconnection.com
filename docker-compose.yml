@@ -1,37 +1,47 @@
 version: "3.9"
 
+x-app: &app
+  build:
+    context: .
+  environment: &env
+    NODE_ENV: development
+    RAILS_ENV: ${RAILS_ENV:-development}
+    PGPASSWORD: password
+  image: otherconnection-dev:0.0.e
+  tmpfs:
+    - /tmp
+
+x-backend: &backend
+  <<: *app
+  stdin_open: true
+  tty: true
+  build: .
+  volumes:
+    - ./:/app:cached
+    - ./log:/root/log:cached
+    - ./.psqlrc:/root/.psqlrc:ro
+    - bundle:/usr/local/bundle
+    - node_modules:/app/node_modules
+    - packs:/app/public/packs
+    - packs-test:/app/public/packs-test
+    - rails_cache:/app/tmp/cache
+    - ssh-data:/ssh:ro
+  environment:
+    <<: *env
+    BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
+    EDITOR: vim
+    PSQL_HISTFILE: /root/log/.psql_history
+    REDIS_HOST: redis
+    REDIS_URL: redis://redis:6379/
+    SSH_AUTH_SOCK: /ssh/auth/sock
+    WEBPACK_DEV_SERVER_MANIFEST_HOST: webpack
+  depends_on:
+    - db
+    - redis
+
 services:
-  x-backend: &backend
-    stdin_open: true
-    tty: true
-    build: .
-    image: otherconnection-dev:0.0.a
-
-    environment: &env
-      PGPASSWORD: password
-
-  db:
-    <<: *backend
-    image: postgres
-    volumes:
-      - ./log:/root/log:cached
-      - ./.psqlrc:/root/.psqlrc:ro
-      - postgres:/var/lib/postgresql/data
-      - postgres_history:/var/log/psql_history
-    ports:
-      - 5432
-    environment:
-      <<: *env
-      POSTGRES_PASSWORD: password
-      PSQL_HISTFILE: /root/log/.psql_history
-      POSTGRES_HOST_AUTH_METHOD: "trust"
-
   web:
     <<: *backend
-    environment:
-      <<: *env
-      SSH_AUTH_SOCK: /ssh/auth/sock
-      EDITOR: vim
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
@@ -43,24 +53,46 @@ services:
     depends_on:
       - db
 
-  webpack:
+  sidekiq:
     <<: *backend
-    command: ./bin/webpack-dev-server --host=0.0.0.0 --disable-host-check
+    command: bundle exec sidekiq -C config/sidekiq.yml
+
+  webpack:
+    <<: *app
+    command: bin/webpack-dev-server --no-inline --host=0.0.0.0 --disable-host-check
     ports:
       - '3035:3035'
     volumes:
-      - ..:/app:cached
+      - .:/app:cached
       - bundle:/usr/local/bundle
       - node_modules:/app/node_modules
       - packs:/app/public/packs
       - packs-test:/app/public/packs-test
-    depends_on:
-      - web
+
+  db:
+    image: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - postgres_history:/var/log/psql_history
+    ports:
+      - 5432
+    environment:
+      <<: *env
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+
+  redis:
+    image: redis:latest
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
 
 volumes:
   postgres:
   postgres_history:
   bundle:
+  redis:
   rails_cache:
   node_modules:
   packs:
