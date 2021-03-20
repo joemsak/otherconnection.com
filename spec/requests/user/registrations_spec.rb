@@ -9,14 +9,16 @@ RSpec.describe "Users::Registrations" do
   end
 
   describe "POST /create" do
-    it "returns http success" do
-      post user_registrations_path
-      expect(response).to have_http_status(:success)
+    it "sends a signup email" do
+      expect {
+        post user_registrations_path
+      }.to have_enqueued_mail(User::RegistrationsMailer, :signup)
     end
 
-    it "renders the create template" do
+    it "redirects to the registration" do
       post user_registrations_path
-      expect(response).to render_template('user/registrations/create')
+      registration = User::Registration.last
+      expect(response).to redirect_to(user_registration_path(registration))
     end
   end
 end
