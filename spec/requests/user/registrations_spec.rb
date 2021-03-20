@@ -9,14 +9,18 @@ RSpec.describe "Users::Registrations" do
   end
 
   describe "POST /create" do
+    let(:valid_params) do
+      { user_registration: attributes_for(:user_registration) }
+    end
+
     it "sends a signup email" do
       expect {
-        post user_registrations_path
+        post user_registrations_path, params: valid_params
       }.to have_enqueued_mail(User::RegistrationsMailer, :signup)
     end
 
     it "redirects to the registration" do
-      post user_registrations_path
+      post user_registrations_path, params: valid_params
       registration = User::Registration.last
       expect(response).to redirect_to(user_registration_path(registration))
     end
