@@ -45,6 +45,14 @@ RSpec.describe "Users::Registrations" do
           }
         }.to change { registration.reload.name }.to('This Test')
       end
+
+      it "ignores a blank name" do
+        expect {
+          post user_registrations_path, params: {
+            user_registration: { email: email, name: "" }
+          }
+        }.not_to change { registration.reload.name }
+      end
     end
   end
 end

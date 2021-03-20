@@ -21,6 +21,8 @@ class User::RegistrationsController < ApplicationController
   end
 
   def user_registration_params
-    params.require(:user_registration).permit(:name, :email)
+    params.require(:user_registration)
+      .permit(:name, :email)
+      .reject { |k, v| v.blank? }
   end
 end
