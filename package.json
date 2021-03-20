@@ -10,11 +10,11 @@
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.35",
     "stimulus": "^2.0.0",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "tailwindcss": "^2.0.1-compat"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^2.3.0",
     "webpack-dev-server": "^3.11.2"
   }
 }
