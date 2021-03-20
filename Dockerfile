@@ -6,6 +6,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -; \
     curl -sL https://deb.nodesource.com/setup_14.x | bash -;
 
 RUN apt-get update -qq && apt-get install -y \
+  vim \
   yarn \
   nodejs \
   postgresql-client \

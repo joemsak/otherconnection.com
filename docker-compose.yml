@@ -5,6 +5,8 @@ services:
     stdin_open: true
     tty: true
     build: .
+    image: otherconnection-dev:0.0.a
+
     environment: &env
       PGPASSWORD: password
 
