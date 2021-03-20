@@ -11,6 +11,10 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.i18n.load_path += Dir[
+      Rails.root.join('config', 'locales', '**', '*.{rb,yml}')
+    ]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -20,6 +24,11 @@ module App
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_job.queue_name_prefix = "app_#{Rails.env}"
     config.active_job.queue_adapter = :sidekiq
+
+    config.action_mailer.default_url_options = {
+      host: ENV["APP_HOST"],
+      port: ENV["APP_PORT"]
+    }
 
     config.generators do |g|
       g.test_framework :rspec
