@@ -2,15 +2,17 @@ class User::RegistrationsController < ApplicationController
   before_action :load_new_registation
 
   def create
-    @registration.save
+    @registration.update(user_registration_params)
     User::RegistrationsMailer.signup(@registration).deliver_later
     redirect_to @registration
   end
 
   private
   def load_new_registation
-    if params[:user_registration]
-      @registration = User::Registration.new(user_registration_params)
+    if action_name == "create"
+      @registration = User::Registration.find_or_initialize_by(
+        email: user_registration_params[:email]
+      )
     else
       @registration = User::Registration.new
     end
