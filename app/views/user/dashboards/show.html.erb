@@ -1,9 +1,24 @@
-<h1><%= t("greetings.welcome", name: current_user.name) %></h1>
+<h1 class="my-4 text-3xl font-bold">
+  <%= t("greetings.welcome", name: current_user.name) %>
+</h1>
 
-<dl>
-  <dt><%= t("activerecord.models.user.registration.attribute.name") %></dt>
+<dl class="py-4">
+  <dt class="font-bold">
+    <%= t("activerecord.models.user.registration.attribute.name") %>
+  </dt>
+
   <dd><%= current_user.name %></dd>
 
-  <dt><%= t("activerecord.models.user.registration.attribute.email") %></dt>
+  <dt class="font-bold">
+    <%= t("activerecord.models.user.registration.attribute.email") %>
+  </dt>
+
   <dd><%= current_user.email %></dd>
 </dl>
+
+<div class="py-4">
+  <%= link_to t("actions.logout"),
+    signout_path,
+    method: :delete,
+    class: "btn btn-blue-outline" %>
+</div>

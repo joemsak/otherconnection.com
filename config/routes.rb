@@ -6,12 +6,14 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :registrations
-    resources :sessions, only: %i[new create]
+    resource :session, only: %i[new create destroy]
     resource :dashboard, only: :show
   end
 
-  get 'user/sessions/new', as: :signin
-  get 'user/registrations/new', as: :signup
+  get 'signup', to: 'user/registrations#new', as: :signup
+  get 'signin', to: 'user/sessions#new', as: :signin
+  delete 'signout', to: 'user/sessions#destroy', as: :signout
+  get 'signout', to: 'user/sessions#destroy'
 
   root to: 'user/dashboards#show'
 end

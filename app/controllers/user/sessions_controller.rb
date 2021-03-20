@@ -6,6 +6,12 @@ class User::SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session[:auth_token] = nil
+    @current_user = nil
+    redirect_to root_path
+  end
+
   private
   def valid_auth_token
     @valid_auth_token ||= params[:token] &&

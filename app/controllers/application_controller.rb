@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User::Registration.find_by(auth_token: session[:auth_token])
+    @current_user ||= session[:auth_token] &&
+      User::Registration.find_by(auth_token: session[:auth_token])
   end
 end
