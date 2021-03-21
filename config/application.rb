@@ -43,7 +43,7 @@ module App
       g.fixture_replacement :factory_bot, dir: "spec/factories"
 
       g.stylesheets false
-      g.helpers false
+      g.helper false
 
       g.orm :active_record, primary_key_type: :uuid
     end
