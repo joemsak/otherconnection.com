@@ -4,8 +4,17 @@ class User::RegistrationsController < ApplicationController
   before_action :load_new_registation
 
   def create
+    mailer = User::RegistrationsMailer
+    mail = :signup
+
+    if @registration.persisted?
+      mailer = User::SessionMailer
+      mail = :signin
+    end
+
     @registration.update(user_registration_params)
-    User::RegistrationsMailer.signup(@registration).deliver_later
+    mailer.send(mail, @registration).deliver_later
+
     redirect_to @registration
   end
 
