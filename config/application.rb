@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module App
   class Application < Rails::Application
+    DOCUSIGN_CONFIG = YAML.load(
+      ERB.new(File.read(Rails.root.join("config", "docusign.yml"))).result
+    )[Rails.env]
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
@@ -43,5 +47,9 @@ module App
 
       g.orm :active_record, primary_key_type: :uuid
     end
+
+    config.app_url = ENV["APP_HOST"]
+
+    DOCUSIGN_CONFIG.each { |k, v| config.send("#{k}=", v) }
   end
 end

@@ -62,6 +62,12 @@ group :test do
   gem 'rails-controller-testing'
 end
 
+gem 'docusign_esign', '~> 3.8.0.rc1'
+gem 'docusign_rooms', '~> 1.1.0.rc1'
+gem 'docusign_click', '~> 1.0.0'
+gem 'omniauth-oauth2', '~> 1.7.1'
+gem 'omniauth-rails_csrf_protection'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
