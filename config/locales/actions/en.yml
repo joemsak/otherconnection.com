@@ -1,9 +1,17 @@
 en:
   actions:
+    confirm:
+      disconnect_service: Are you sure you want to disconnect %{service}?
+
     prefixes:
       you_can: You can
 
     close_this: close this %{thing}
+    connect_service: Connect to %{service}
+
+    disconnect: Disconnect
+
     login: Log in
     login_now: Log in now
+
     signup: Sign up

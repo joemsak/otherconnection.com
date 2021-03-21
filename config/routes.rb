@@ -6,9 +6,14 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :registrations
+    resources :authentications
+
     resource :session, only: %i[new create destroy]
     resource :dashboard, only: :show
   end
+
+  resources :omniauth, only: :show, path: :auth
+  get '/auth/:provider/callback', to: 'user/sessions#create'
 
   get 'signup', to: 'user/registrations#new', as: :signup
   get 'signin', to: 'user/sessions#new', as: :signin

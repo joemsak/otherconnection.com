@@ -16,7 +16,30 @@
   <dd><%= current_user.email %></dd>
 </dl>
 
-<div class="py-4">
+<div class="py-8">
+  <% if current_user.docusign_authentication %>
+    <p class="font-bold"><%= t("common.connected_service", service: Constants::DOCUSIGN) %>:</p>
+
+    <p>
+      <%= current_user.docusign_authentication.email %>
+      <br />
+      <%= link_to t("actions.disconnect"),
+        user_authentication_path(:docusign),
+        method: :delete,
+        data: {
+          confirm: t("actions.confirm.disconnect_service", service: Constants::DOCUSIGN)
+        }
+      %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to t("actions.connect_service", service: Constants::DOCUSIGN),
+        omniauth_path(:docusign) %>
+    </p>
+  <% end %>
+</div>
+
+<div class="py-8">
   <%= link_to t("actions.logout"),
     signout_path,
     method: :delete,
