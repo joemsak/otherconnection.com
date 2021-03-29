@@ -46,6 +46,16 @@ class User::Registration < ApplicationRecord
     auth
   end
 
+  def authentication_exists?(provider)
+    authentications.exists?(provider: provider)
+  end
+
+  def oauth_email(provider)
+    if auth = authentications.find_by(provider: provider)
+      auth.email
+    end
+  end
+
   private
   def self.find_auth_token_by_secure_query(query)
     where(session_token: query[:session_token]).pluck(:auth_token).first
