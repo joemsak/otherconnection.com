@@ -164,12 +164,18 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
       rack-protection
+    omniauth-calendly (1.0.3)
+      omniauth (~> 2.0)
+      omniauth-oauth2 (~> 1.7.1)
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
     omniauth-rails_csrf_protection (1.0.0)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    pessimize (0.4.0)
+      bundler
+      trollop
     pg (1.2.3)
     pry (0.14.0)
       coderay (~> 1.1)
@@ -276,6 +282,7 @@ GEM
       rails (>= 6.0.0)
     thor (1.1.0)
     tilt (2.0.10)
+    trollop (2.9.10)
     turbo-rails (0.5.9)
       rails (>= 6.0.0)
     typhoeus (1.4.0)
@@ -307,39 +314,41 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  airbrake-ruby
-  bootsnap (>= 1.4.4)
-  byebug
-  capybara (>= 3.26)
+  airbrake-ruby (~> 5.2.0)
+  bootsnap (~> 1.7.3)
+  byebug (~> 11.1.3)
+  capybara (~> 3.35.3)
   docusign_click (~> 1.0.0)
   docusign_esign (~> 3.8.0.rc1)
-  docusign_rooms (~> 1.1.0.rc1)
-  dotenv-rails
-  factory_bot_rails
+  docusign_rooms (~> 1.1.0)
+  dotenv-rails (~> 2.7.6)
+  factory_bot_rails (~> 6.1.0)
   hotwire-rails (~> 0.1.3)
-  jbuilder (~> 2.7)
-  letter_opener_web (~> 1.0)
-  listen (~> 3.3)
+  jbuilder (~> 2.11.2)
+  letter_opener_web (~> 1.4.0)
+  listen (~> 3.5.0)
+  omniauth-calendly (~> 1.0.3)
   omniauth-oauth2 (~> 1.7.1)
-  omniauth-rails_csrf_protection
-  pg (~> 1.1)
-  pry-rails
-  puma (~> 5.0)
-  rack-mini-profiler (~> 2.0)
-  rails (~> 6.1.3)
-  rails-controller-testing
-  redis (~> 4.0)
-  rexml
-  rspec-rails
-  sass-rails (>= 6)
-  selenium-webdriver
-  sidekiq
-  spring
+  omniauth-rails_csrf_protection (~> 1.0.0)
+  pessimize (~> 0.4.0)
+  pg (~> 1.2.3)
+  pry-rails (~> 0.3.9)
+  puma (~> 5.2.2)
+  rack-mini-profiler (~> 2.3.1)
+  rails (~> 6.1.3.1)
+  rails-controller-testing (~> 1.0.5)
+  redis (~> 4.2.5)
+  rexml (~> 3.2.4)
+  rspec-rails (~> 5.0.1)
+  sass-rails (~> 6.0.0)
+  selenium-webdriver (~> 3.142.7)
+  sidekiq (~> 6.2.0)
+  spring (~> 2.1.1)
   stimulus-rails (~> 0.2.3)
   tzinfo-data
-  web-console (>= 4.1.0)
-  webdrivers
-  webpacker (~> 5.0)
+  web-console (~> 4.1.0)
+  webdrivers (~> 4.6.0)
+  webpacker (~> 5.2.1)
 
 RUBY VERSION
    ruby 3.0.0p0
