@@ -2,7 +2,7 @@
 # and are automatically loaded by Rails. If you want to use locales other
 en:
   common:
-    connected_service: Connected to %{service}
+    connected_provider: Connected to %{provider}
     window: window
 
   greetings:

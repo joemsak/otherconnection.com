@@ -1,0 +1,28 @@
+<% brand_name = OauthProvider.brand_name(provider) %>
+
+<% if current_user.authentication_exists?(provider) %>
+  <p class="font-bold">
+    <%= t("common.connected_provider", provider: brand_name) %>:
+  </p>
+
+  <p>
+    <%= current_user.oauth_email(provider) %>
+
+    <br />
+
+    <%= link_to t("actions.disconnect"),
+      user_authentication_path(provider),
+      method: :delete,
+      data: {
+        confirm: t("actions.confirm.disconnect_provider", provider: brand_name)
+      }
+    %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to(
+      t("actions.connect_provider", provider: brand_name),
+      omniauth_path(provider)
+    ) %>
+  </p>
+<% end %>

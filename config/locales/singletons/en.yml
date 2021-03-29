@@ -1,0 +1,5 @@
+en:
+  singletons:
+    oauth_provider:
+      brand_name:
+        not_found: 'OauthProvider.brand_name not found for: %{provider}'

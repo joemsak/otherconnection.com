@@ -1,13 +1,13 @@
 en:
   actions:
     confirm:
-      disconnect_service: Are you sure you want to disconnect %{service}?
+      disconnect_provider: Are you sure you want to disconnect %{provider}?
 
     prefixes:
       you_can: You can
 
     close_this: close this %{thing}
-    connect_service: Connect to %{service}
+    connect_provider: Connect to %{provider}
 
     disconnect: Disconnect
 
