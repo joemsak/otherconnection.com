@@ -44,6 +44,7 @@ interaction:
     command: bundle exec rails
     subcommands:
       s:
+        command: bundle exec puma -C config/puma.rb
         description: Run Rails server at http://localhost:3000
         service: web
         compose:
