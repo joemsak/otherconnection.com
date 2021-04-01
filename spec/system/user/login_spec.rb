@@ -4,9 +4,7 @@ RSpec.describe "Logging in", :js do
   scenario "From the home page" do
     registration = create(:user_registration)
 
-    visit root_path
-
-    click_on "Log in"
+    visit signin_path
 
     fill_in "Email", with: registration.email
 
