@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
@@ -22,5 +23,5 @@ Rails.application.routes.draw do
   delete 'signout', to: 'user/sessions#destroy', as: :signout
   get 'signout', to: 'user/sessions#destroy'
 
-  root to: 'pages#show', id: :home
+  root to: 'pages#show', id: "home"
 end

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def show
-    render "pages/#{params[:id]}"
+    @page = Page.friendly.find(params[:id])
   end
 end
