@@ -80,3 +80,5 @@ gem "hotwire-rails", "~> 0.1.3"
 gem "stimulus-rails", "~> 0.2.3"
 
 gem "aws-sdk-s3", require: false
+
+gem "friendly_id"
