@@ -13,11 +13,7 @@ RSpec.describe Page, type: :model do
     it "is attached via active storage" do
       page = create(:page)
 
-      page.background_image.attach(
-        io: File.open("spec/support/storage/pages/background_image.jpg"),
-        filename: "background_image.jpg",
-        content_type: "image/jpg"
-      )
+      page.background_image.attach(attach_options('pages/background_image.jpg'))
 
       expect(page.background_image).to be_attached
       expect(url_for(page.background_image)).to match(
