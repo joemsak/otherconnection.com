@@ -1,9 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get 'pages/show'
   mount Sidekiq::Web => '/sidekiq'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  resources :pages, only: :show
 
   namespace :user do
     resources :registrations
