@@ -334,7 +334,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake-ruby (~> 5.2.0)
-  aws-sdk-s3
+  aws-sdk-s3 (~> 1.93.0)
   bootsnap (~> 1.7.3)
   byebug (~> 11.1.3)
   capybara (~> 3.35.3)
@@ -343,7 +343,7 @@ DEPENDENCIES
   docusign_rooms (~> 1.1.0)
   dotenv-rails (~> 2.7.6)
   factory_bot_rails (~> 6.1.0)
-  friendly_id
+  friendly_id (~> 5.4.2)
   hotwire-rails (~> 0.1.3)
   jbuilder (~> 2.11.2)
   letter_opener_web (~> 1.4.0)
