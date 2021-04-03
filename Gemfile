@@ -82,5 +82,3 @@ gem "stimulus-rails", "~> 0.2.3"
 gem "aws-sdk-s3", "~> 1.93.0", require: false
 
 gem "friendly_id", "~> 5.4.2"
-
-gem 'activeadmin', "~> 2.9.0"
