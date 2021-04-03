@@ -1,7 +1,8 @@
 class User::RegistrationsController < ApplicationController
   layout "focused"
 
-  before_action :load_new_registation
+  before_action :load_new_registation,
+    :require_unauthenticated
 
   def create
     mailer = User::RegistrationsMailer
