@@ -73,6 +73,7 @@ class User::SessionsController < ApplicationController
 
   def sign_user_in
     session[:auth_token] = valid_auth_token
+    current_user.regenerate_session_token
     redirect_to user_dashboard_path
   end
 
