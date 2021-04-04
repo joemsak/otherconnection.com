@@ -14,13 +14,10 @@ ActiveStorage.start()
 import "controllers"
 
 (() => {
-  document.addEventListener('ajax:complete', init)
-  document.addEventListener('DOMContentLoaded', init)
-
-  const init = () => {
+  document.addEventListener('DOMContentLoaded', () => {
     initializeDropdownMenus('user-menu')
     initializeCloseBtns()
-  }
+  })
 
   const initializeDropdownMenus = (...domIds) => {
     domIds.forEach(domId => {
