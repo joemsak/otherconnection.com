@@ -1,0 +1,5 @@
+en:
+  user:
+    sessions:
+      create:
+        invalid_credentials: Invalid login details

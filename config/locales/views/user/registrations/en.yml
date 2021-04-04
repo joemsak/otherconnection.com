@@ -8,3 +8,4 @@ en:
     sessions:
       new:
         form_title: Log in to your account
+        magic_link_explanation: We'll send you an email with a magic link that will log you in. No need for a password!

@@ -3,6 +3,8 @@
 en:
   common:
     connected_provider: Connected to %{provider}
+    email_address: email address
+    full_name: full name
     window: window
 
   greetings:

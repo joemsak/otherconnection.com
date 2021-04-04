@@ -13,6 +13,10 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: {
+      'light-blue': colors.lightBlue,
+      teal: colors.teal,
+      cyan: colors.cyan,
+      rose: colors.rose,
       transparent: 'transparent',
       current: 'currentColor',
 
@@ -852,5 +856,8 @@ module.exports = {
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+  ],
 }

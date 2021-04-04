@@ -11,4 +11,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="p-4">
+  <body>
+    <%= render 'layouts/components/flash_notices' %>
+
+    <div class="min-h-screen bg-gray-100">
+      <% if content_for?(:header) %>
+        <header class="pb-24 bg-gradient-to-r from-light-blue-800 to-cyan-600">
+          <%= yield :header %>
+        </header>
+      <% end %>
+
+      <main class="-mt-24 pb-8">

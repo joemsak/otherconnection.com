@@ -6,6 +6,7 @@ en:
     prefixes:
       you_can: You can
 
+    close: close
     close_this: close this %{thing}
     connect_provider: Connect to %{provider}
 
